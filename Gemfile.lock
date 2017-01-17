@@ -27,8 +27,9 @@ GIT
       sitemap_generator
       staccato
 
-PATH
-  remote: ../../engines/swell_theme_astrid
+GIT
+  remote: git://github.com/Groundswell/swell_theme_astrid.git
+  revision: bbc8f16b490bfd650dab7d58a84539dfbd1a861b
   specs:
     swell_theme_astrid (0.0.1)
       rails (~> 4.2.3)
