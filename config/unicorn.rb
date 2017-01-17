@@ -2,8 +2,8 @@
 
 
 # config/unicorn.rb
-worker_processes Integer( ENV["WEB_CONCURRENCY"] || 3 ) # using the performance-M dynos
-timeout 30
+worker_processes Integer(ENV["WEB_CONCURRENCY"] || 3)
+timeout 15
 preload_app true
 
 before_fork do |server, worker|
@@ -14,7 +14,7 @@ before_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
-end 
+end
 
 after_fork do |server, worker|
   Signal.trap 'TERM' do
