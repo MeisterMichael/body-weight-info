@@ -1,7 +1,7 @@
 
 SwellMedia.configure do |config|
 
-	config.app_name = 'BodyWeight Fitness'
+	config.app_name = 'BodyWeight'
 	config.app_host = ENV['APP_DOMAIN'] || 'localhost:3000'
 	config.app_description = 'A Very Swell App indeed'
 	config.app_logo = 'https://media.licdn.com/media/p/1/000/27f/2a3/36f3707.jpg'

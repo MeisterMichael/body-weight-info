@@ -4,7 +4,7 @@ module SwellMedia
 		def home
 			# the homepage
 
-			@articles = SwellMedia::Media.none.page(params[:page]).per(10)
+			@articles = SwellMedia::Article.published.page(params[:page]).per(10)
 
 			render layout: 'swell_media/homepage'
 		end

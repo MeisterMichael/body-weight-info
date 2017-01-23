@@ -1,0 +1,88 @@
+/ site branding
+.site-branding
+	.container
+		.row
+			.col-md-3
+				-#%ul.social-icon
+					- if User.first.social_id(:twitter).present?
+						%li
+							%a.icon-twitter{:href => "http://twitter.com/#{User.first.social_id(:twitter)}"}
+								%i.fa.fa-twitter
+					- if User.first.social_id(:facebook).present?
+						%li
+							%a.icon-facebook{:href => "http://www.facebook.com/#{User.first.social_id(:facebook)}"}
+								%i.fa.fa-facebook
+					- if User.first.social_id(:instagram).present?
+						%li
+							%a.icon-instagram{:href => "www.instagram.com/#{User.first.social_id(:instagram)}"}
+								%i.fa.fa-instagram
+					- if User.first.social_id(:pinterest).present?
+						%li
+							%a.icon-pinterest{:href => "http://www.pinterest.com/#{User.first.social_id(:pinterest)}"}
+								%i.fa.fa-pinterest
+					- if User.first.social_id(:youtube).present?
+						%li
+							%a.icon-youtube{:href => "http://www.youtube.com/channel/#{User.first.social_id(:youtube)}"}
+								%i.fa.fa-youtube-play
+					%li
+						%a{:href => "http://cloud.feedly.com/#subscription%2Ffeed%2F#{CGI.escape( swell_media.category_url( :all, format: 'rss' ) )}", :target => "blank" }
+							%img#feedlyFollow{:alt => "follow us in feedly", :src => "http://s3.feedly.com/img/follows/feedly-follow-logo-black_2x.png", style: 'height: 1.25em;vertical-align: text-top;opacity: 0.5;'}><
+
+			/ .col-md-3
+			.col-md-6
+				/ <h1 class="site-title"><a href="index.html" rel="home">Astrif.</a></h1>
+				%h1.site-title.title-image
+					%a{:href => swell_media.root_path(), :rel => "home"}
+						= SwellMedia.app_name
+
+				%p.site-description - Fitness for EveryBody -
+			/ .col-md-6
+			-# .col-md-3
+				= form_tag swell_media.category_path( :all ), method: :get, class: 'search-form' do
+					.form-group
+						%label.sr-only{:for => "search"} Search
+						= text_field_tag :q, '', :placeholder => "Search...", class: 'form-control search-field'
+					/ .form-group
+					%button.btn.btn-default.search-submit{:type => "submit"}
+						%i.fa.fa-search
+				/ .search-form
+			/ .col-md-3
+		/ .row
+	/ .container
+/ .site-branding
+/ main navigation
+.site-navigation-sticky-wrapper
+	%header#masthead.site-header{:role => "banner"}
+		%nav#site-navigation.main-navigation{:role => "navigation"}
+			.container
+				.row
+					.col-md-12
+						%button.menu-toggle{"aria-controls" => "primary-menu", "aria-expanded" => "false"}
+							%i.fa.fa-bars
+							%span.sr-only Primary Menu
+						.menu-container
+							%ul#primary-menu.menu.nav-menu{"aria-expanded" => "false"}
+								%li.menu-item{ class: set_css_if( class: 'current-menu-item', path: swell_media.root_path() ) }
+									%a{:href => swell_media.root_path() } Home
+								- if @featured_results.present?
+									%li.menu-item.menu-item-has-children.hidden-xs{"aria-haspopup" => "true"}
+										%a{:href => "#"} Features
+										%ul.sub-menu
+											- @featured_results.each do |media|
+												%li.menu-item
+													%a{:href => media.url}=media.title
+								%li.menu-item{ class: set_css_if( class: 'current-menu-item', path: swell_media.category_path(:food) ) }
+									%a{:href => swell_media.category_path(:food)} Food
+								%li.menu-item{ class: set_css_if( class: 'current-menu-item', path: swell_media.category_path(:fitness) ) }
+									%a{:href => swell_media.category_path(:fitness)} Fitness
+								%li.menu-item{ class: set_css_if( class: 'current-menu-item', path: '/workouts' ) }
+									%a{:href => '/workouts'} Workouts
+								%li.menu-item{ class: set_css_if( class: 'current-menu-item', path: '/about' ) }
+									%a{:href => '/about' } About
+						/ .menu-container
+					/ .col-md-12
+				/ .row
+			/ .container
+		/ #site-navigation
+	/ #masthead
+/ .site-header-affix-wrapper

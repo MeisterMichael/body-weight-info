@@ -1,0 +1,43 @@
+
+- cache( @media, expires_in: 1.hour ) do
+	.container
+		.row
+			/ article
+			.col-md-8.col-md-offset-2
+				.site-entry
+					%article.post.format-standard.hentry
+						.entry-header
+							%h1.entry-title Bodyweight Exercises
+						/ .entry-header
+						-# if (featured_image = (@media.cover_path || @media.avatar)).present?
+							.entry-featured-image
+								%img{:alt => @media.avatar_caption || @media.title, :src => featured_image, 'data-pin-description' => sanitize(@media.description || @media.title), 'data-pin-media' => (@media.avatar_url(:pinterest) || @media.avatar_url(:featured) || featured_image)}/
+							/ .entry-featured-image
+						.entry-content.fr-view
+							%p Bodyweight exercises are a great way to get and stay in shape, without needing expensive gym equipment or memberships, but don't let that fool you these exercises are no joke.  Bodyweight exercises are regularly used in high intensity Crossfit workouts, and are great training for everything from running to cycling.
+							%p Best of all, you can get started right now no matter how fit you are, with entry level exercises and modifications.  In fact the only thing you need to get fit with bodyweight workouts, is accept that you can do each workout from beginning to end and then do them.
+
+						/ .entry-content
+					/ .post
+
+					.related-posts
+						.row
+							- @exercises.each do |exercise|
+								.col-sm-4
+									.post-container
+										- if exercise.avatar.present?
+											.post-thumbnail
+												%a{:href => exercise.url}
+													%img{:src => exercise.avatar}/
+										/ .post-thumbnail
+										%h3.post-title
+											%a{:href => exercise.url}=exercise.name
+										%p=exercise.description
+									/ .post-container
+								/ .col-md-3
+						/ .row
+					/ .related-posts
+				/ .site-entry
+			/ .col-md-8
+		/ .row
+	/ .container

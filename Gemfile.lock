@@ -1,6 +1,15 @@
 GIT
+  remote: git://github.com/Groundswell/swell_ecom.git
+  revision: d76d79384e61db75751aed9357b40c3b8ba8578a
+  specs:
+    swell_ecom (0.0.1)
+      stripe
+      swell_media
+      tax_cloud
+
+GIT
   remote: git://github.com/Groundswell/swell_media.git
-  revision: 8f4519bccff2cbb121537621877657db29b31a9e
+  revision: 158c0ba1eb19d76061ffe2d0493bf6202a18cb12
   specs:
     swell_media (0.0.1)
       acts-as-taggable-array-on
@@ -33,6 +42,34 @@ GIT
   specs:
     swell_theme_astrid (0.0.1)
       rails (~> 4.2.3)
+
+PATH
+  remote: ../../engines/swell_fitness
+  specs:
+    swell_fitness (0.0.1)
+      acts-as-taggable-array-on
+      awesome_nested_set (~> 3.0.2)
+      browser
+      carrierwave
+      carrierwave_direct
+      coffee-rails (~> 4.1.0)
+      devise
+      fastimage
+      fb_graph
+      fog
+      friendly_id (~> 5.1.0)
+      haml
+      jquery-rails
+      jquery-ui-rails
+      kaminari
+      omniauth
+      pg
+      pundit
+      rails (>= 4.2.0)
+      rest-client
+      sass-rails (~> 5.0.1)
+      sitemap_generator
+      staccato
 
 GEM
   remote: https://rubygems.org/
@@ -76,8 +113,10 @@ GEM
     acts-as-taggable-array-on (0.3.0)
       activerecord (>= 4, < 5)
       activesupport (>= 4, < 5)
-    addressable (2.5.0)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.3.8)
+    akami (1.3.1)
+      gyoku (>= 0.4.0)
+      nokogiri
     arel (6.0.4)
     attr_required (1.0.1)
     awesome_nested_set (3.0.3)
@@ -162,7 +201,7 @@ GEM
     fog-atmos (0.1.0)
       fog-core
       fog-xml
-    fog-aws (1.1.0)
+    fog-aws (1.2.0)
       fog-core (~> 1.38)
       fog-json (~> 1.0)
       fog-xml (~> 0.1)
@@ -241,7 +280,7 @@ GEM
     fog-voxel (0.1.0)
       fog-core
       fog-xml
-    fog-vsphere (1.6.0)
+    fog-vsphere (1.7.0)
       fog-core
       rbvmomi (~> 1.9)
     fog-xenserver (0.2.3)
@@ -255,12 +294,17 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    gyoku (1.3.1)
+      builder (>= 2.1.2)
     haml (4.0.7)
       tilt
     hashie (3.4.6)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
+    httpi (2.4.2)
+      rack
+      socksify
     i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.3)
@@ -274,18 +318,18 @@ GEM
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
     json (1.8.6)
-    kaminari (1.0.0)
+    kaminari (1.0.1)
       activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.0.0)
-      kaminari-activerecord (= 1.0.0)
-      kaminari-core (= 1.0.0)
-    kaminari-actionview (1.0.0)
+      kaminari-actionview (= 1.0.1)
+      kaminari-activerecord (= 1.0.1)
+      kaminari-core (= 1.0.1)
+    kaminari-actionview (1.0.1)
       actionview
-      kaminari-core (= 1.0.0)
-    kaminari-activerecord (1.0.0)
+      kaminari-core (= 1.0.1)
+    kaminari-activerecord (1.0.1)
       activerecord
-      kaminari-core (= 1.0.0)
-    kaminari-core (1.0.0)
+      kaminari-core (= 1.0.1)
+    kaminari-core (1.0.1)
     kgio (2.11.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -301,16 +345,16 @@ GEM
     newrelic_rpm (3.17.2.327)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
-    omniauth (1.3.1)
+    nori (2.6.0)
+    omniauth (1.3.2)
       hashie (>= 1.2, < 4)
       rack (>= 1.0, < 3)
     orm_adapter (0.5.0)
     pg (0.19.0)
-    public_suffix (2.0.5)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (1.6.5)
-    rack-oauth2 (1.5.0)
+    rack-oauth2 (1.5.1)
       activesupport (>= 2.3)
       attr_required (>= 0.0.5)
       httpclient (>= 2.4)
@@ -363,11 +407,23 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    savon (2.11.1)
+      akami (~> 1.2)
+      builder (>= 2.1.2)
+      gyoku (~> 1.2)
+      httpi (~> 2.3)
+      nokogiri (>= 1.4.0)
+      nori (~> 2.4)
+      wasabi (~> 3.4)
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    shareable (1.1.4)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     sitemap_generator (5.2.0)
       builder (~> 3.0)
+    socksify (1.7.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     sprockets (3.7.1)
@@ -378,6 +434,12 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     staccato (0.5.1)
+    stripe (1.58.0)
+      rest-client (>= 1.4, < 4.0)
+    tax_cloud (0.3.0)
+      activesupport (>= 3.0)
+      i18n
+      savon (>= 2.0)
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -398,6 +460,9 @@ GEM
     uuidtools (2.1.5)
     warden (1.2.6)
       rack (>= 1.0)
+    wasabi (3.5.0)
+      httpi (~> 2.0)
+      nokogiri (>= 1.4.2)
     web-console (2.3.0)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -420,8 +485,11 @@ DEPENDENCIES
   rails (= 4.2.7)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  shareable
   sitemap_generator
   spring
+  swell_ecom!
+  swell_fitness!
   swell_media!
   swell_theme_astrid!
   turbolinks

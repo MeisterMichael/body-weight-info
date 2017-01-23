@@ -1,0 +1,14 @@
+- cache( 'home', expires_in: 1.hour ) do
+	- @articles.each_with_index do |result, index|
+		= render 'swell_media/articles/post', media: result, args: {}
+
+	%nav.navigation.posts-navigation{:role => "navigation"}
+		%h2.screen-reader-text Posts navigation
+		.nav-links
+			- if @articles.current_page < @articles.total_pages
+				.nav-previous
+					%a{ :href => swell_media.root_path( page: @articles.current_page + 1 ) } Older posts
+			- if @articles.current_page > 1
+				.nav-next
+					%a{ :href => swell_media.root_path( page: @articles.current_page - 1 ) } Newer posts
+	/ .navigation

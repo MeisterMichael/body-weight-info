@@ -1,0 +1,36 @@
+
+-# %ul.social-icon{ class: args[:class] }
+	- if User.me.social_id(:twitter).present?
+		%li
+			%a.icon-twitter{:href => "http://twitter.com/#{User.me.social_id(:twitter)}"}
+				%i.fa.fa-twitter
+	- if User.me.social_id(:facebook).present?
+		%li
+			%a.icon-facebook{:href => "http://www.facebook.com/#{User.me.social_id(:facebook)}"}
+				%i.fa.fa-facebook
+	- if User.me.social_id(:instagram).present?
+		%li
+			%a.icon-instagram{:href => "www.instagram.com/#{User.me.social_id(:instagram)}"}
+				%i.fa.fa-instagram
+	- if User.me.social_id(:pinterest).present?
+		%li
+			%a.icon-pinterest{:href => "http://www.pinterest.com/#{User.me.social_id(:pinterest)}"}
+				%i.fa.fa-pinterest
+	- if User.me.social_id(:youtube).present?
+		%li
+			%a.icon-youtube{:href => "http://www.youtube.com/channel/#{User.me.social_id(:youtube)}"}
+				%i.fa.fa-youtube-play
+	-# %li
+		%a.icon-social.icon-google-plus{:href => "#"}
+			%i.fa.fa-google-plus
+	-# %li
+		%a.icon-social.icon-linkedin{:href => "#"}
+			%i.fa.fa-linkedin
+	-# %li
+		%a.icon-social.icon-dribbble{:href => "#"}
+			%i.fa.fa-dribbble
+	%li
+		%a{:href => "http://cloud.feedly.com/#subscription%2Ffeed%2F#{CGI.escape( swell_media.category_url( :all, format: 'rss' ) )}", :target => "blank" }
+			%img#feedlyFollow{:alt => "follow us in feedly", :src => "http://s3.feedly.com/img/follows/feedly-follow-logo-black_2x.png", style: 'height: 1.25em;vertical-align: text-top;opacity: 0.5;'}><
+
+/ .social-icon

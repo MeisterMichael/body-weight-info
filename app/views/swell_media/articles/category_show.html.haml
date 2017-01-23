@@ -1,0 +1,40 @@
+- cache( @media, expires_in: 1.hour ) do
+	.container
+		.row
+			/ article
+			.col-md-8.col-md-offset-2
+				.site-entry
+					%article.post.format-standard.hentry
+						.entry-header
+							%h1.entry-title= @media.title
+						/ .entry-header
+						- if (featured_image = (@media.cover_path || @media.avatar)).present?
+							.entry-featured-image
+								%img{:alt => @media.avatar_caption || @media.title, :src => featured_image, 'data-pin-description' => sanitize(@media.description || @media.title), 'data-pin-media' => (@media.avatar_url(:pinterest) || @media.avatar_url(:featured) || featured_image)}/
+							/ .entry-featured-image
+						.entry-content.fr-view
+							= raw @media.content
+						/ .entry-content
+					/ .post
+
+					.related-posts
+						.row
+							- SwellMedia::Article.published.where.not( id: @media.id ).with_all_tags( @media.tags ).order(score: :desc, id: :desc).limit(3).each do |suggested_media|
+								.col-sm-4
+									.post-container
+										.post-thumbnail
+											%a{:href => suggested_media.url}
+												%img{:src => suggested_media.avatar}/
+										/ .post-thumbnail
+										%h3.post-title
+											%a{:href => suggested_media.url}=suggested_media.title
+										%span.post-meta
+											%a{:href => "#"}=suggested_media.publish_at.strftime('%B %e, %Y')
+									/ .post-container
+								/ .col-md-3
+						/ .row
+					/ .related-posts
+				/ .site-entry
+			/ .col-md-8
+		/ .row
+	/ .container

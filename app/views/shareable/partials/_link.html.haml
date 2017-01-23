@@ -1,0 +1,9 @@
+
+- if options[:button_name] == 'pinterest'
+	%a{ target: "_blank", href: options[:url].gsub(/&description=[^&]*/, "&description=#{URI.encode( URI.decode(options[:pinterest].try(:[], :description) || options[:description]).gsub(/\+/,' ') ) }"), class: "icon-#{options[:button_caption].downcase}", 'data-pin-custom' => 1 }
+		%i.fa{ class: "fa-#{options[:button_caption].downcase.gsub(/google\+/, 'google-plus')}" }
+		= options[:button_caption]
+- else
+	%a{ target: "_blank", href: options[:url], class: "icon-#{options[:button_caption].downcase.gsub(/google\+/, 'google-plus')}", 'data-pin-custom' => 1 }
+		%i.fa{ class: "fa-#{options[:button_caption].downcase.gsub(/google\+/, 'google-plus')}" }
+		= options[:button_caption]

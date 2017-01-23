@@ -28,11 +28,18 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'carrierwave'
 gem 'newrelic_rpm'
+gem 'shareable'
 gem 'sitemap_generator'
 gem 'unicorn'
 
 # gem 'swell_media', path: '../../engines/swell_media'
 gem 'swell_media', git: 'git://github.com/Groundswell/swell_media.git'
+
+gem 'swell_fitness', path: '../../engines/swell_fitness'
+# gem 'swell_fitness', git: 'git://github.com/Groundswell/swell_fitness.git'
+
+# gem 'swell_ecom', path: '../../engines/swell_ecom'
+gem 'swell_ecom', git: 'git://github.com/Groundswell/swell_ecom.git'
 
 # gem 'swell_theme_astrid', path: '../../engines/swell_theme_astrid'
 gem 'swell_theme_astrid', git: 'git://github.com/Groundswell/swell_theme_astrid.git'

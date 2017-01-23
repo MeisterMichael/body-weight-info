@@ -1,0 +1,26 @@
+- cache( @media, expires_in: 1.hour ) do
+	.container
+		.row
+			/ article
+			.col-md-8.col-md-offset-2
+				.site-entry
+					%article.post.format-standard.hentry
+						.entry-header
+							%h1.entry-title= @exercise.name
+						/ .entry-header
+						-# if (featured_image = (@media.cover_path || @media.avatar)).present?
+							.entry-featured-image
+								%img{:alt => @media.avatar_caption || @media.title, :src => featured_image, 'data-pin-description' => sanitize(@media.description || @media.title), 'data-pin-media' => (@media.avatar_url(:pinterest) || @media.avatar_url(:featured) || featured_image)}/
+							/ .entry-featured-image
+						.entry-content.fr-view
+							= raw @exercise.content
+						.entry-content.fr-view
+							= raw @exercise.instruction
+						/ .entry-content
+					/ .post
+
+
+				/ .site-entry
+			/ .col-md-8
+		/ .row
+	/ .container

@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require app_theme
+//= require swell_ecom/stripe_integration
 //= require_self
